@@ -6,7 +6,7 @@ var io = require('socket.io').listen(server);
 users = [];
 connections = [];
 
-server.listen(8080);
+server.listen(process.env.PORT || 5000);
 console.log('Server running...')
 
 app.get('/', function(req, res){
