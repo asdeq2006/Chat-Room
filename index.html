@@ -68,7 +68,7 @@
 				});
 
 				socket.on('new message', function(data){
-					$chat.append('<div class="card card-body bg-light"><strong>'+data.user+'</strong>: '+data.msg+'</div>');
+					$chat.append('<div class="card-body bg-light"><b>'+data.user+'</b>: '+data.msg+'</div>');
 				});
 
 				$userForm.submit(function(e){
