@@ -36,20 +36,19 @@
 		<script>
 			$(function(){
 				var socket = io.connect();
-				var messageForm = $('#messageForm');
-				var message = $('#message');
-				var chat = $('#chat');
+				var $messageForm = $('#messageForm');
+				var $message = $('#message');
+				var $chat = $('#chat');
 
-				messageForm.submit(function(e){
+				$messageForm.submit(function(e){
 					e.preventDefault();
-					socket.emit('send message', message.val());
-					message.val('');
-
-					socket.on('new message', function(data){
-						chat.append('<div class="card card-body bg-light">'+data.msg+'</div>');
-					})
-				})
-			})
+					socket.emit('send message', $message.val());
+					$message.val('');
+				});
+				socket.on('new message', function(data){
+					$chat.append('<div class="card card-body bg-light">'+data.msg+'</div>');
+				});
+			});
 		</script>
 	</body>
 </html>

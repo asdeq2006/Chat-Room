@@ -15,11 +15,10 @@ app.get('/', function(req, res){
 
 io.sockets.on('connection', function (socket){
 	connections.push(socket);
-	var address = String(socket.request.connection.remoteAddress);
-	console.log('New connection from ' + address);
+	console.log('Connected: %s sockets connected', connections.length);
 
 	// Disconnect
-	socket.on('disconnect', function(){
+	socket.on('disconnect', function(data){
 		connections.splice(connections.indexOf(socket), 1);
 		console.log('Disconnected: %s sockets disconnected', connections.length)
 	});
