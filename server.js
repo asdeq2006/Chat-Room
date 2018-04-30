@@ -9,6 +9,9 @@ connections = [];
 server.listen(process.env.PORT || 5000);
 console.log('Server running...')
 
+io.set('heartbeat timeout', 10000);
+io.set('heartbeat interval', 2000);
+
 app.get('/', function(req, res){
 	res.sendFile(__dirname +  "/index.html")
 });
