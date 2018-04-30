@@ -11,6 +11,12 @@
 			#messageArea{
 				display:none;
 			}
+			#chattext{
+				word-break: break-all;
+			}
+			#usertext{
+				font-weight: bold;
+			}
 		</style>
 	</head>
 	<body>
@@ -81,7 +87,7 @@
 				});
 
 				socket.on('new message', function(data){
-					$chat.append('<div class="card-body d-flex bg-light align-items-end"><b>'+data.user+':</b>&nbsp;'+data.msg+'</div>');
+					$chat.append('<div class="card-body d-flex bg-light align-items-end"><div id="usertext">'+data.user+':</div>&nbsp;<div id="chattext">'+data.msg+'</div></div>');
 					auto_scroll($chat);
 					if(document.hidden){
 						$unread_msg++;
