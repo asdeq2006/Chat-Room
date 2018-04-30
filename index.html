@@ -36,7 +36,7 @@
 					</div>
 				</div>
 				<div class="col-md-8">
-					<div class="chat" id="chat"></div>
+					<div class="chat" id="chat" style="overflow: scroll; height: 70%;"></div>
 
 					<form id="messageForm">
 						<div class="form-group">
@@ -50,6 +50,11 @@
 			</div>
 		</div>
 		<script>
+			function auto_scroll(scrollObject){
+				console.log(scrollObject[0].scrollHeight);
+				scrollObject.scrollTop(scrollObject[0].scrollHeight);
+			}
+
 			$(function(){
 				var socket = io.connect();
 				var $messageForm = $('#messageForm');
@@ -77,6 +82,7 @@
 
 				socket.on('new message', function(data){
 					$chat.append('<div class="card-body bg-light"><b>'+data.user+'</b>: '+data.msg+'</div>');
+					auto_scroll($chat);
 					if(document.hidden){
 						$unread_msg++;
 						document.title='Chat App ('+ $unread_msg +')';
