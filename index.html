@@ -72,6 +72,7 @@
 				var $username = $('#username');
 				var $unread_msg = 0;
 				var $ping = "Ping!";
+				var $notification = new Audio('notification.mp3');
 
 				function sendout(e){
 					e.preventDefault();
@@ -105,6 +106,7 @@
 					auto_scroll($chat);
 					if(document.hidden){
 						$unread_msg++;
+						$notification.play();
 						document.title='Chat App ('+ $unread_msg +')';
 					};
 				});

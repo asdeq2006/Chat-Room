@@ -12,6 +12,8 @@ console.log('Server running...')
 io.set('heartbeat timeout', 10000);
 io.set('heartbeat interval', 2000);
 
+app.use(express.static('src'));
+
 app.get('/', function(req, res){
 	res.sendFile(__dirname +  "/index.html")
 });
