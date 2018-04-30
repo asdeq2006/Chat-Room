@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Server</title>
+		<title>Chat App</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
@@ -60,6 +60,7 @@
 				var $userForm = $('#userForm');
 				var $users = $('#users');
 				var $username = $('#username');
+				var $unread_msg = 0;
 
 				$messageForm.submit(function(e){
 					e.preventDefault();
@@ -67,8 +68,19 @@
 					$message.val('');
 				});
 
+				document.addEventListener("visibilitychange", function() {
+					if(!document.hidden){
+						document.title='Chat App'
+						$unread_msg = 0;
+					};
+				});
+
 				socket.on('new message', function(data){
 					$chat.append('<div class="card-body bg-light"><b>'+data.user+'</b>: '+data.msg+'</div>');
+					if(document.hidden){
+						$unread_msg++;
+						document.title='Chat App ('+ $unread_msg +')';
+					};
 				});
 
 				$userForm.submit(function(e){
