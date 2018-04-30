@@ -28,7 +28,7 @@ io.sockets.on('connection', function (socket){
 		console.log('Disconnected: %s sockets disconnected', connections.length)
 	});
 
-	//Send Message
+	// Send Message
 	socket.on('send message',function(data){
 		io.sockets.emit('new message',{msg: data, user: socket.username});
 	});
@@ -39,6 +39,11 @@ io.sockets.on('connection', function (socket){
 		socket.username = data;
 		users.push(socket.username);
 		updateUsernames();
+	});
+
+	// Get ping
+	socket.on('Ping_it', function(data){
+		console.log("Get pinged from: " + socket.username);
 	});
 
 	function updateUsernames(){

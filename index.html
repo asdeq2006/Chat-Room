@@ -71,6 +71,7 @@
 				var $users = $('#users');
 				var $username = $('#username');
 				var $unread_msg = 0;
+				var $ping = "Ping!";
 
 				function sendout(e){
 					e.preventDefault();
@@ -94,6 +95,11 @@
 						sendout(e);
 					};
 				});
+
+				setInterval(function(){
+					console.log("Pinged");
+					socket.emit('Ping_it', $ping);
+				},30000);
 
 				socket.on('new message', function(data){
 					$chat.append('<div class="card-body d-flex bg-light align-items-end"><div id="usertext">'+data.user+':</div>&nbsp;<div id="chattext">'+data.msg+'</div></div>');
