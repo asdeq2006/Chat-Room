@@ -22,8 +22,10 @@ io.sockets.on('connection', function (socket){
 
 	// Disconnect
 	socket.on('disconnect', function(data){
+		if(socket.username){
 		users.splice(users.indexOf(socket.username), 1);
 		updateUsernames();
+		}
 		connections.splice(connections.indexOf(socket), 1);
 		console.log('Disconnected: %s sockets disconnected', connections.length)
 	});
@@ -43,7 +45,7 @@ io.sockets.on('connection', function (socket){
 
 	// Get ping
 	socket.on('Ping_it', function(data){
-		console.log("Get pinged from: " + socket.username);
+		//console.log("Get pinged from: " + socket.username);
 	});
 
 	function updateUsernames(){
