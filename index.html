@@ -57,7 +57,6 @@
 		</div>
 		<script>
 			function auto_scroll(scrollObject){
-				console.log(scrollObject[0].scrollHeight);
 				scrollObject.scrollTop(scrollObject[0].scrollHeight);
 			}
 
@@ -73,16 +72,26 @@
 				var $username = $('#username');
 				var $unread_msg = 0;
 
-				$messageForm.submit(function(e){
+				function sendout(e){
 					e.preventDefault();
 					socket.emit('send message', $message.val());
 					$message.val('');
+				}
+
+				$messageForm.submit(function(e){
+					sendout(e);
 				});
 
 				document.addEventListener("visibilitychange", function() {
 					if(!document.hidden){
 						document.title='Chat App'
 						$unread_msg = 0;
+					};
+				});
+
+				$message[0].addEventListener("keydown", function(e){
+					if(e.keyCode == 13){
+						sendout(e);
 					};
 				});
 
@@ -114,6 +123,8 @@
 					$users.html(html);
 				});
 			});
+
+
 		</script>
 	</body>
 </html>
