@@ -81,7 +81,7 @@
 				});
 
 				socket.on('new message', function(data){
-					$chat.append('<div class="card-body bg-light"><b>'+data.user+'</b>: '+data.msg+'</div>');
+					$chat.append('<div class="card-body d-flex bg-light align-items-end"><b>'+data.user+':</b>&nbsp;'+data.msg+'</div>');
 					auto_scroll($chat);
 					if(document.hidden){
 						$unread_msg++;
