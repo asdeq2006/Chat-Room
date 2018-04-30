@@ -103,7 +103,7 @@
 
 				socket.on('new message', function(data){
 					$chat.append('<div class="card-body d-flex bg-light align-items-end"><div id="usertext">'+data.user+':</div>&nbsp;<div id="chattext">'+data.msg+'</div></div>');
-					auto_scroll($chat);
+					setTimeout(auto_scroll($chat), 500);
 					if(document.hidden && $messageArea.css('display')=='flex'){
 						$unread_msg++;
 						$notification.play();
