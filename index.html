@@ -97,9 +97,6 @@
 					};
 				});
 
-				setInterval(function(){
-					socket.emit('Ping_it', $ping);
-				},30000);
 
 				socket.on('new message', function(data){
 					$chat.append('<div class="card-body d-flex bg-light align-items-end"><div id="usertext">'+data.user+':</div>&nbsp;<div id="chattext">'+data.msg+'</div></div>');
@@ -124,12 +121,18 @@
 					$username.val('');
 				});
 
-				socket.on('get users', function(data){
+				socket.on('get users', function(data, data2, status){
 					var html='';
 					for(var i=0; i<data.length;i++){
 						html+= '<li class="list-group-item">'+data[i]+'</li>';
 					}
 					$users.html(html);
+					if (status=="in"){
+						$chat.append('<div class="card-body d-flex bg-light align-items-end"><b>'+data2+'</b>&nbsp;logged in.</div>');
+					} else if (status=="out"){
+						$chat.append('<div class="card-body d-flex bg-light align-items-end"><b>'+data2+'</b>&nbsp;logged out.</div>');
+					}
+					
 				});
 			});
 
