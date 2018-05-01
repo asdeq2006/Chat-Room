@@ -137,13 +137,17 @@
 
 				$userForm.submit(function(e){
 					e.preventDefault();
-					socket.emit('new user', $username.val(), function(data){
-						if(data){
-							$userFormArea.hide();	
-							$messageArea.show().css('display','flex');
+						if ($username<>""){
+							socket.emit('new user', $username.val(), function(data){
+								if(data){
+									$userFormArea.hide();	
+									$messageArea.show().css('display','flex');
+								}
+							});
+							$username.val('');						
+						} else if ($username==""){
+							alert("Username cannot be blank.");
 						}
-					});
-					$username.val('');
 				});
 
 				socket.on('get users', function(data, data2, status){
