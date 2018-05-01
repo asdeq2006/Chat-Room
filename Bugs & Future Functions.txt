@@ -1,0 +1,11 @@
+Bugs
+1. If the user is disconnected without closing the web, he can still send the message but the username is undefined.
+2. Filter should be set to prevent malicious code injection.
+3. If the user is using this web with a phone, it will be disconnected after the mon is locked. (Can't be fixed.)
+
+Functions to be added:
+1. Private messages
+2. Rooms
+3. Prevent the duplicate usernames
+4. Text effects
+5. Text can be broken to the next line
