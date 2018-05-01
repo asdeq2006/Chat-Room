@@ -25,6 +25,7 @@ io.sockets.on('connection', function (socket){
 	// Disconnect
 	socket.on('disconnect', function(data){
 		if(socket.username){
+			console.log(socket.username + "disconnected.");
 			users.splice(users.indexOf(socket.username), 1);
 			updateUsernames();
 		}
@@ -40,6 +41,7 @@ io.sockets.on('connection', function (socket){
 	// New User
 	socket.on('new user', function(data, callback){
 		callback(true);
+		console.log(socket.username + "logged in.");
 		socket.username = data;
 		users.push(socket.username);
 		updateUsernames();
