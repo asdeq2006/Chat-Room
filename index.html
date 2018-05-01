@@ -124,7 +124,7 @@
 
 
 				socket.on('new message', function(data){
-					$chat.append('<div class="d-flex bg-light align-items-end">('+ getDateTime()+')&nbsp;<div id="usertext">'+data.user+':</div>&nbsp;<div id="chattext">'+data.msg+'</div></div>');
+					$chat.append('<div >('+ getDateTime()+')&nbsp;<div id="usertext">'+data.user+':</div>&nbsp;<div id="chattext">'+data.msg+'</div></div>');
 					setTimeout(function(){
 						auto_scroll($chat);
 					}, 150);
