@@ -60,6 +60,31 @@
 				scrollObject.scrollTop(scrollObject[0].scrollHeight);
 			}
 
+			function getDateTime() {
+
+				 var date = new Date();
+
+				 var hour = date.getHours();
+				 hour = (hour < 10 ? "0" : "") + hour;
+
+				 var min  = date.getMinutes();
+				 min = (min < 10 ? "0" : "") + min;
+
+				 var sec  = date.getSeconds();
+				 sec = (sec < 10 ? "0" : "") + sec;
+
+				 var year = date.getFullYear();
+
+				 var month = date.getMonth() + 1;
+				 month = (month < 10 ? "0" : "") + month;
+
+				 var day  = date.getDate();
+				 day = (day < 10 ? "0" : "") + day;
+
+				 return hour + ":" + min + ":" + sec;
+
+			}
+
 			$(function(){
 				var socket = io.connect();
 				var $messageForm = $('#messageForm');
@@ -99,7 +124,7 @@
 
 
 				socket.on('new message', function(data){
-					$chat.append('<div class="card-body d-flex bg-light align-items-end"><div id="usertext">'+data.user+':</div>&nbsp;<div id="chattext">'+data.msg+'</div></div>');
+					$chat.append('<div class="card-body d-flex bg-light align-items-end">('+ getDateTime()+')&nbsp;<div id="usertext">'+data.user+':</div>&nbsp;<div id="chattext">'+data.msg+'</div></div>');
 					setTimeout(function(){
 						auto_scroll($chat);
 					}, 250);
@@ -128,9 +153,9 @@
 					}
 					$users.html(html);
 					if (status=="in"){
-						$chat.append('<div class="card-body d-flex bg-light align-items-end"><b>'+data2+'</b>&nbsp;logged in.</div>');
+						$chat.append('<div class="card-body d-flex bg-light align-items-end">('+ getDateTime()+')&nbsp;<b>'+data2+'</b>&nbsp;logged in.</div>');
 					} else if (status=="out"){
-						$chat.append('<div class="card-body d-flex bg-light align-items-end"><b>'+data2+'</b>&nbsp;logged out.</div>');
+						$chat.append('<div class="card-body d-flex bg-light align-items-end">('+ getDateTime()+')&nbsp;<b>'+data2+'</b>&nbsp;logged out.</div>');
 					}
 					
 				});
