@@ -142,6 +142,8 @@
 					e.preventDefault();
 						if ($username.val().trim()==""){
 							window.alert('Username cannot be blank.');
+						} else if ($username.val().length>25){
+							window.alert('Length of username cannot be over 25 charaters.')
 						} else {
 							socket.emit('new user', $username.val(), function(data){
 								if(data){
