@@ -49,7 +49,7 @@ io.sockets.on('connection', function (socket){
 
 	// Get ping
 	socket.on('Ping_it', function(data){
-		//console.log("Get pinged from: " + socket.username);
+		console.log("Get pinged from: " + socket.username);
 	});
 
 	function updateUsernames(){
